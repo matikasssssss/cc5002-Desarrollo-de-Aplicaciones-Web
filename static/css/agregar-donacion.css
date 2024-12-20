@@ -1,0 +1,175 @@
+:root {
+    --black-color: #000000;
+    --background-color: #d3d8d6;
+    --pink-color: #FC2865;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+/* NAV BAR STUFF */
+
+.navbar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    background: white;
+    border: .2em solid var(--black-color);
+    border-radius: .25em;
+    margin: 1em;
+    box-shadow: .3em .3em 0px 0px rgb(211, 135, 135);
+    animation: changeColor 10s linear infinite; 
+}
+
+.navbar > * {
+    color: var(--black-color);
+    font-family: "Roboto", sans-serif;
+}
+
+.navbar h1 {
+    font-family: "Fira Code", monospace;
+    margin: .5em;
+    margin-right: auto;
+}
+
+.navbar a {
+    position: relative;
+    text-decoration: none;
+    margin: 0 2em;
+    padding: .25em;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.navbar-page::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.175em;
+    background: var(--black-color);
+    left: 0;
+    bottom: 0;
+    transform: scale(0, 1);
+    transition: transform 0.3s ease;
+}
+
+#donation-btn {
+    background-color: rgb(211, 135, 135);
+    width: 6%;
+    text-align: center;
+    padding: .5em;
+    border: .2em solid var(--black-color);
+    box-shadow: .175em .175em 0px 0px black;
+    border-radius: .3em;
+}
+
+.navbar-page:hover::after {
+    transform: scale(1, 1);
+}
+
+.main-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #fff;
+    border: .2em solid var(--black-color);
+    border-radius: .25em;
+    box-shadow: .2em .2em 0px 0px rgb(211, 135, 135);
+    margin: 0 0 0 45em;
+    padding: 0.5em 1em 1em;
+    text-align: justify;
+    font-family: "Arial", sans-serif;
+    max-width: 400px;
+    width: 100%;
+    animation: borderColorChange 10s linear infinite;
+}
+
+.main-container h1, .main-container h2 {
+    font-family: "Fira Code", monospace;
+    margin: .5em;
+    margin-right: auto;
+    text-align: center;
+    font-size: 150%;
+    text-decoration: underline;
+}
+
+label {
+    font-weight: 550;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0px;
+    color: rgb(0, 0, 0);
+}
+
+input[type="email"],
+input[type="text"],
+input[type="file"],
+input[type="nombre_dis"],
+input[type="description"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: .25px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+textarea {
+    height: 100px; 
+    resize: none; 
+}
+
+button#submit-btn,
+button#add-donation-btn {
+    width: 100%;
+    padding: 5px;
+    color: white;
+    border-radius: .3em;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: .15em .15em 0px 0px black;
+    transition: background-color 0.3s ease;
+}
+
+button#submit-btn {
+    background-color: rgb(210, 211, 135);
+}
+
+button#submit-btn:hover {
+    background-color: rgb(211, 135, 135);
+}
+
+button#add-donation-btn {
+    background-color: rgb(135, 211, 207);
+}
+
+button#add-donation-btn:hover {
+    background-color: rgb(144, 211, 135);
+}
+
+/* ANIMACIONES */
+@keyframes changeColor {
+    0% { background: rgb(255, 0, 0); }
+    25% { background: rgb(255, 255, 0); } 
+    50% { background: rgb(0, 255, 0); } 
+    75% { background: rgb(0, 0, 255); }
+    100% { background: rgb(255, 0, 0); } 
+}
+
+@keyframes borderColorChange {
+    0% { border-color: rgb(0, 0, 0); } 
+    25% { border-color: rgb(255, 0, 0); } 
+    50% { border-color: rgb(0, 255, 0); } 
+    75% { border-color: rgb(0, 0, 255); }
+    100% { border-color: rgb(0, 0, 0); } 
+}

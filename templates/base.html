@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    {% block css %}{% endblock %}
+  </head>
+  <body>
+    <nav>
+      <div class="navbar">
+        <h1>{% block h1 %}{% endblock %}</h1>
+        <a class="navbar-page" href="{{ url_for('index') }}">Home</a>
+        <a class="navbar-page" href="{{ url_for('agregar_donacion') }}">Add Donation</a>
+        <a class="navbar-page" href="{{ url_for('ver_dispositivos') }}">Devices Information</a>
+        <a class="navbar-page" href="{{ url_for('grafico_dispositivo') }}">Stats devices</a>
+        <a class="navbar-page" href="{{ url_for('grafico_contacto') }}">Stats contacts</a>
+      </div>
+    </nav>
+
+    <section class="main-container">
+      {% block content %}{% endblock %}
+      {% block javascript %}{% endblock %}
+    </section>
+  </body>
+</html>

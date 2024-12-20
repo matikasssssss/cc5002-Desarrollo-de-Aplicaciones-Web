@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Donation{% endblock %}
+{% block h1 %}Add Donation{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/agregar-donacion.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="val-box" hidden>
+    <h2 id="val-msg"></h2>
+    <ul id="val-list"></ul>
+</div>
+<form name="myForm" action="{{ url_for('agregar_donacion') }}" method="POST" enctype="multipart/form-data">
+    <h1>Contact information</h1>
+    <label for="nombre">Name:</label>
+    <input type="text" placeholder="Add name" name="nombre" id="nombre" minlength="3" required><br>
+    <label for="email">Email:</label>
+    <input type="email" placeholder="Add email" name="email" id="email" required><br>
+    <label for="phone">Number:</label>
+    <input type="text" placeholder="Add number" name="phone" id="phone" minlength="8"><br>
+    <label for="select-region">Region:</label>
+    <select name="select-region" id="select-region" required>
+      <option value="" disabled selected hidden>Select your region</option>
+      {% for region in regions %}
+        <option value="{{ region[0] }}">{{ region[1] }}</option>
+      {% endfor %}
+    </select><br>
+    <label for="select-district">District:</label>
+    <select name="select-district" id="select-district" required>
+      <option value="" disabled selected hidden>Select your district</option>
+      {% for comuna in comunas %}
+        <option value="{{ comuna[0] }}" data-region-id="{{ comuna[2] }}">{{ comuna[1] }}</option>
+      {% endfor %}
+    </select><br>
+    
+    <div id="device-information-container">
+      <div class="device-information" data-index="0">
+        <h2>Device Information:</h2>
+        <label for="nombre_dis_0">Device name:</label>
+        <input type="text" name="devices[0][nombre_dis]" placeholder="Add device name" id="nombre_dis_0" class="nombre_dis" required><br>
+        
+        <label for="description_0">Description:</label>
+        <textarea name="devices[0][description]" placeholder="Add description(Optional)" id="description_0" rows="4" cols="50"></textarea><br>
+        
+        <label for="select-type_0">Type:</label>
+        <select name="devices[0][select-type]" id="select-type_0" class="select-type" required>
+          <option value="" disabled selected hidden>Select type</option>
+          <option value="pantalla">Display</option>
+          <option value="notebook">Notebook</option>
+          <option value="tablet">Tablet</option>
+          <option value="celular">Phone</option>
+          <option value="consola">Console</option>
+          <option value="mouse">Mouse</option>
+          <option value="teclado">Keyboard</option>
+          <option value="impresora">Printer</option>
+          <option value="parlante">Speaker</option>
+          <option value="audífonos">Headphones</option>
+          <option value="otro">Others</option>
+        </select><br>
+    
+        <label for="years_0">Years of use:</label>
+        <input type="text" name="devices[0][years]" placeholder="Add years of use" id="years_0" class="years" required><br>
+    
+        <label for="select-status_0">Operational status:</label>
+        <select name="devices[0][select-status]" id="select-status_0" class="select-status" required>
+           <option value="" disabled selected hidden>Select status</option>
+           <option value="funciona perfecto">Works perfectly</option>
+           <option value="funciona a medias">Works halfway</option>
+           <option value="no funciona">Doesn't work</option>
+        </select><br>
+    
+        <label for="files_0">Pictures:</label>
+        <input type="file" name="devices[0][files]" id="files_0" class="files" accept="image/*,.pdf" required><br>
+      </div>
+    </div>
+    <button id="add-donation-btn" type="button">Add another donation</button>    
+    <button id="submit-btn" type="button">Publish donation</button>
+</form>
+{% endblock %}
+    
+{% block javascript %}
+  <script src="{{ url_for('static', filename='js/select.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/agregar-donacion.js') }}"></script>
+{% endblock %}

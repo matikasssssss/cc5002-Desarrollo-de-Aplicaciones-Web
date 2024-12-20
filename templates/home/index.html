@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Electronic Donations{% endblock %}
+{% block h1 %}Electronic Donations{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+    <div class="paragraph">
+        <p>
+            La finalidad de esta corporación es facilitar la donación de aparatos electrónicos, pues existe una creciente preocupación por el aumento de dispositivos electrónicos que
+            quedan en desuso y terminan en la basura, sin la posibilidad de ser reciclados.
+        </p>
+    </div>
+    <div class="paragraph2">
+        <p>
+            Es por eso que decidimos tomar cartas en el asunto e implementar un mecanismo que permita a cualquier usuario poder donar algún
+            dispositivo electrónico que ya no utilice.
+        </p>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script>
+        const homeUrl = "{{ home_url }}";
+    </script>
+{% endblock %}

@@ -1,0 +1,119 @@
+:root {
+    --black-color: #000000;
+    --background-color: #d3d8d6;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+/* NAV BAR STUFF */
+
+
+.navbar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    background: white; 
+    border: .2em solid var(--black-color);
+    border-radius: .25em;
+    margin: 1em 1em 2em 1em;
+    box-shadow: .3em .3em 0px 0px rgb(144, 211, 135);
+    animation: changeColor 5s infinite alternate; 
+  }
+  
+  .navbar > * {
+    color: var(--black-color);
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .navbar h1 {
+    font-family: "Fira Code", monospace;
+    margin: .5em;
+    margin-right: auto;
+  }
+  
+  .navbar a {
+    position: relative;
+    text-decoration: none;
+    margin: 0 2em;
+    padding: .25em;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  .navbar-page::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.175em;
+    background: var(--black-color);
+    left: 0;
+    bottom: 0;
+    transform: scale(0, 1);
+    transition: transform 0.3s ease;
+  }
+
+.navbar-page:hover::after {
+    transform: scale(1, 1);
+}
+
+/* ANIMACIONES */
+@keyframes changeColor {
+    0% { background: rgb(255, 0, 0); } 
+    25% { background: rgb(255, 255, 0); } 
+    50% { background: rgb(0, 255, 0); } 
+    75% { background: rgb(0, 0, 255); }
+    100% { background: rgb(255, 0, 0); } 
+}
+
+/* CONTAINER STUFF */
+
+.paragraph {
+    width: 40%;
+    max-height: 300px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background: rgb(211, 135, 135);
+    border: .2em solid var(--black-color);
+    border-radius: .25em;
+    box-shadow: .2em .2em 0px 0px black;
+    margin: 1em 2em 2em 2em;
+    padding: 0.5em 1em 1em 1em;
+    font-size: 1.2rem;
+    text-align: justify;
+    font-family: "Fira Code", monospace;
+}
+
+.paragraph2 {
+    width: 40%;
+    max-height: 100px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background: rgb(144, 211, 135);
+    border: .2em solid var(--black-color);
+    border-radius: .25em;
+    box-shadow: .2em .2em 0px 0px black;
+    margin: 1em 1em 1em 53em;
+    padding: 0.5em 1em 1em 1em;
+    font-size: 1.2rem;
+    text-align: justify;
+    font-family: "Fira Code", monospace;
+}
+
+
+.stats-container {
+    padding: 1rem;
+    background: white;
+    border: 0.2em solid var(--black-color);
+    border-radius: 0.25em;
+    box-shadow: 0.2em 0.2em 0px 0px black;
+    margin: 0 auto;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.2rem;
+
+}

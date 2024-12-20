@@ -1,0 +1,36 @@
+{
+
+"insertar_usuario": "INSERT INTO contacto (nombre, email, celular, comuna_id, fecha_creacion) VALUES (%s, %s, %s, %s, %s)",
+
+"get_last_usuario": "SELECT id, nombre, email, celular, comuna_id, fecha_creacion FROM contacto ORDER BY id DESC",
+
+
+"insertar_dispositivo": "INSERT INTO dispositivo (contacto_id, nombre, descripcion, tipo, anos_uso, estado) VALUES (%s,%s,%s,%s,%s,%s)",
+
+"get_dispositivoByUser": "SELECT id, contacto_id, nombre, descripcion, tipo, anos_uso, estado FROM dispositivo WHERE contacto_id=%s",
+
+"get_last_dispositivos": "SELECT id, contacto_id, nombre, descripcion, tipo, anos_uso, estado FROM dispositivo ORDER BY id DESC LIMIT 0, 5",
+
+"get_next_dispositivos": "SELECT id, contacto_id, nombre, descripcion, tipo, anos_uso, estado FROM dispositivo ORDER BY id DESC LIMIT 5, 5",
+
+"get_last_dispositivosCOM": "SELECT id, contacto_id, COM.nombre, nombre, descripcion, tipo, anos_uso, estado FROM dispositivo, contacto CO, comuna COM WHERE contacto_id=CO.id AND CO.comuna_id=COM.id ORDER BY id DESC LIMIT 5, 5",
+
+
+"insert_arch": "INSERT INTO archivo (ruta_archivo, nombre_archivo, dispositivo_id) VALUES (%s,%s,%s)",
+
+"get_archById": "SELECT id, ruta_archivo, nombre_archivo FROM archivo WHERE dispositivo_id=%s",
+
+"get_device_by_id": "SELECT d.nombre, d.tipo, d.estado, r.nombre AS region, a.ruta_archivo, co.nombre AS donante_nombre, co.celular AS donante_celular, co.email AS donante_email FROM dispositivo d JOIN contacto co ON d.contacto_id = co.id JOIN comuna c ON co.comuna_id = c.id JOIN region r ON c.region_id = r.id LEFT JOIN archivo a ON d.id = a.dispositivo_id WHERE d.id = %s",
+
+"get_all_devices": "SELECT d.id, d.nombre AS dispositivo_nombre, d.tipo, d.estado, c.nombre AS comuna, a.ruta_archivo AS foto FROM dispositivo d JOIN contacto co ON d.contacto_id = co.id JOIN comuna c ON co.comuna_id = c.id LEFT JOIN archivo a ON d.id = a.dispositivo_id LIMIT %s OFFSET %s",
+
+"insert_comment": "INSERT INTO comentario (nombre, texto, fecha, dispositivo_id) VALUES (%s, %s, %s, %s)",
+
+"get_comments_by_device_id": "SELECT nombre, texto, fecha FROM comentario WHERE dispositivo_id = %s ORDER BY fecha DESC",
+
+"get_dispo_by_id": "SELECT tipo, COUNT(*) FROM dispositivo GROUP BY tipo",
+
+"get_contact_by_district": "SELECT c.nombre, COUNT(*) FROM contacto co JOIN comuna c ON co.comuna_id = c.id GROUP BY c.nombre",
+
+"get_district_by_name": "SELECT id FROM comuna WHERE nombre = %s"
+}

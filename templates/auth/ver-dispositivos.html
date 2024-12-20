@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Devices Information{% endblock %}
+{% block h1 %}Devices Information{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ver-dispositivos.css') }}">
+{% endblock %}
+
+{% block content %}
+    <table id="interactiveTable">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Device Name</th>
+                <th>Status</th>
+                <th>District</th>
+                <th>Photos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in devices %}
+                <tr onclick="window.location.href='{{ url_for('device_details', device_id=device.id) }}'">
+                    <td>{{ device.tipo }}</td>
+                    <td>{{ device.nombre }}</td>
+                    <td>{{ device.estado }}</td>
+                    <td>{{ device.comuna }}</td>
+                    <td><img src="{{ device.foto }}" alt="{{ device.nombre }}" width="110" height="110" onclick="event.stopPropagation(); openModal(this, '{{ device.nombre }}')"></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {% if prev_url %}
+            <a href="{{ prev_url }}">« Anterior</a>
+        {% else %}
+            <a class="disabled">Previous</a>
+        {% endif %}
+        <span>Página {{ page }} de {{ total_pages }}</span>
+        {% if next_url %}
+            <a href="{{ next_url }}">Siguiente »</a>
+        {% else %}
+            <a class="disabled">Next</a>
+        {% endif %}
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2></h2>
+            </div>
+            <div class="modal-body">
+                <img alt="imagen en 1280x1024" id="modal-img" src="/static/images/default-image.jpg">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static', filename='js/ver-dispositivos.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endblock %}
